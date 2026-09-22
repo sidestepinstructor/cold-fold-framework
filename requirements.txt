@@ -1,0 +1,7 @@
+flask
+redis
+aiohttp
+requests
+websocket-client
+kubernetes
+flask

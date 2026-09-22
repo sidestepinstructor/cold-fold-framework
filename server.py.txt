@@ -1,0 +1,11 @@
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/cycle', methods=['POST'])
+def cycle():
+    data = request.get_json()
+    return jsonify({"status": "ok", "payload": data})
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)

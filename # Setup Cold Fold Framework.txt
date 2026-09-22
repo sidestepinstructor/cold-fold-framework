@@ -1,0 +1,23 @@
+# Setup Cold Fold Framework
+# Creates folder structure and all files automatically
+ 
+$baseDir = "C:\Users\Infin\OneDrive\Einstein_Engine_Engine"
+$projDir = "$baseDir\cold-fold-framework"
+ 
+# Create folder
+New-Item -ItemType Directory -Path $projDir -Force | Out-Null
+cd $projDir
+ 
+# Initialize git
+git init
+git config user.name "sidestepinstructor"
+git config user.email "sidestepinstruct@gmail.com"
+ 
+Write-Host "✓ Folder created: $projDir"
+Write-Host "✓ Git initialized"
+Write-Host ""
+Write-Host "Next steps:"
+Write-Host "1. Download all 6 Python files to $projDir"
+Write-Host "2. Run: git add . && git commit -m 'Initial commit'"
+Write-Host "3. Run: git push -u origin main"
+Write-Host "4. Run: python codex_self_test_sidestepinstructor.py"

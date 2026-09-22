@@ -1,0 +1,8 @@
+# ColdFold Launcher — stable, deterministic
+
+$engine = "C:\Users\Infin\OneDrive\ORIGIN\CUsersInfincold-fold-framework"
+$python = "$HOME\.claude-science\conda\envs\python\python.exe"
+
+$env:PYTHONPATH = $engine
+
+& $python -c "import cold_fold_engine as cf; rt = cf.Runtime(perturbations=cf.DEFAULT_SCENARIO); tr = rt.run(120); print('steps', len(tr))"

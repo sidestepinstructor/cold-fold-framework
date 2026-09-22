@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  phoenix-engine:
+    image: registry.local/phoenix-engine:1.0-cycleA
+    deploy:
+      replicas: 3
+      placement:
+        constraints:
+          - node.labels.role == engine
+      update_config:
+        order: start-first
+        parallelism: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 5
+    networks:
+      - phoenix-net
+    ports:
+      - "8080:8080"
+    environment:
+      ENGINE_MODE: "phoenix"
+      ENGINE_CYCLE_PROFILE: "default"
+    configs:
+      - source: phoenix-engine-config
+        target: /engine/config/engine.yml
+      - source: phoenix-cycles-config
+        target: /engine/config/cycles.yml
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+configs:
+  phoenix-engine-config:
+    file: ./config/engine.yml
+  phoenix-cycles-config:
+    file: ./config/cycles.yml
+
+networks:
+  phoenix-net:
+    driver: overlay
